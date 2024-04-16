@@ -1,0 +1,32 @@
+{% extends "./model.html" %}
+
+{% block body %}
+<section class="d-flex flex-column justify-content-center align-items-center h-100" id="form-signin">
+  <h1 class="mb-5">Iniciar Sesion</h1>
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+   {% endif %}
+  {% endwith %}
+<form class="gap-4 d-flex flex-column w-50" name="login" action="/login" method="POST">
+  <div>
+    <label class="form-label">Correo Electronico</label>
+    <input type="text" class="form-control" name="email">
+  </div>
+  <div>
+    <label class="form-label">Contraseña</label>
+    <input type="text" class="form-control" type="password" name="password">
+  </div>
+  <button class="btn btn-primary" type="submit"> Iniciar Sesion</button>
+</form>
+<div class="mt-5">
+  <p>No tienes una cuenta? <a class="fw-bolder btn-login" href="{{url_for("index_router.signup")}}" >Registrarse</a></p>
+</div>
+</section>
+
+{% endblock %}
